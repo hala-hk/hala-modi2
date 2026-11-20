@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>تصريح خروج ❤️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-pink-1: #ffe6f0;
+      --bg-pink-2: #ffc2dc;
+      --bg-pink-3: #ff99c8;
+      --card-bg: rgba(255, 255, 255, 0.86);
+      --card-border: rgba(255, 255, 255, 0.95);
+      --text-dark: #4a152b;
+      --text-muted: #8c3b5b;
+      --accent: #ff2e7e;
+      --accent-dark: #d91663;
+      --soft-pink: #fff0f6;
+      --shadow: 0 20px 50px rgba(217, 22, 99, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--bg-pink-1) 0%, var(--bg-pink-2) 52%, var(--bg-pink-3) 100%);
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .hearts-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -40px;
+      color: rgba(255, 46, 126, 0.28);
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.85);
+        opacity: 0;
+      }
+      12% {
+        opacity: 0.85;
+      }
+      50% {
+        transform: translateY(-52vh) translateX(18px) rotate(12deg) scale(1.05);
+      }
+      88% {
+        opacity: 0.75;
+      }
+      100% {
+        transform: translateY(-108vh) translateX(-16px) rotate(-12deg) scale(0.95);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 560px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 2px solid var(--card-border);
+      border-radius: 28px;
+      padding: 32px 26px;
+      box-shadow: var(--shadow);
+      animation: popIn 0.5s ease-out;
+    }
+
+    @keyframes popIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #ffe0ed;
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 12px rgba(255, 46, 126, 0.12);
+    }
+
+    h1 {
+      font-size: 1.95rem;
+      font-weight: 800;
+      color: var(--accent-dark);
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .field-group {
+      margin-bottom: 20px;
+      background: var(--soft-pink);
+      border: 1.5px solid #ffc9e0;
+      border-radius: 20px;
+      padding: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .field-group:focus-within {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 24px rgba(255, 46, 126, 0.12);
+      background: #ffffff;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 1.03rem;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+    }
+
+    .step-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff5ca1, var(--accent));
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    input[type="text"],
+    input[type="time"],
+    textarea {
+      width: 100%;
+      font-family: 'Cairo', sans-serif;
+      font-size: 0.98rem;
+      color: var(--text-dark);
+      background: #ffffff;
+      border: 1.5px solid #ffb8d6;
+      border-radius: 14px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    textarea {
+      min-height: 88px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255, 46, 126, 0.12);
+    }
+
+    .reaction-box {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .reaction-abdullah {
+      display: block;
+      background: #ffe3f0;
+      color: #b80d57;
+      border: 1px solid #ff9ec7;
+    }
+
+    .reaction-late {
+      display: block;
+      background: #ffd6e7;
+      color: #9e0b48;
+      border: 1.5px solid #ff4d94;
+    }
+
+    .reaction-ok {
+      display: block;
+      background: #fff5fa;
+      color: #8f2d56;
+      border: 1px solid #ffc7df;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .error-msg {
+      color: #c9145a;
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-top: 8px;
+      display: none;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 15px 22px;
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #ff5da2 0%, var(--accent) 55%, var(--accent-dark) 100%);
+      color: #ffffff;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1.12rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 26px rgba(217, 22, 99, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px rgba(217, 22, 99, 0.35);
+    }
+
+    .submit-btn:active {
+      transform: translateY(0);
+    }
+
+    .result-screen {
+      display: none;
+      text-align: center;
+      animation: popIn 0.45s ease-out;
+    }
+
+    .love-banner {
+      background: linear-gradient(135deg, #ffeff6 0%, #ffd6e8 100%);
+      border: 2px solid #ff8ec0;
+      border-radius: 22px;
+      padding: 22px 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(255, 46, 126, 0.14);
+    }
+
+    .big-heart {
+      font-size: 2.6rem;
+      display: inline-block;
+      animation: heartbeat 1.25s infinite;
+      margin-bottom: 8px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.16); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.12); }
+    }
+
+    .love-message {
+      font-size: 1.28rem;
+      font-weight: 800;
+      color: var(--accent-dark);
+      line-height: 1.7;
+    }
+
+    .summary-card {
+      text-align: right;
+      background: #ffffff;
+      border: 1.5px solid #ffc4de;
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .summary-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--accent-dark);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed #ffaad0;
+    }
+
+    .summary-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #fff0f6;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .summary-item:last-child {
+      border-bottom: none;
+    }
+
+    .summary-label {
+      font-weight: 700;
+      color: var(--text-muted);
+      display: block;
+      font-size: 0.85rem;
+    }
+
+    .summary-val {
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .extra-note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #fff0f7;
+      color: #b51256;
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .reset-btn {
+      width: 100%;
+      padding: 13px 18px;
+      border-radius: 16px;
+      border: 2px solid var(--accent);
+      background: #ffffff;
+      color: var(--accent-dark);
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .reset-btn:hover {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 24px 18px;
+        border-radius: 22px;
+      }
+      h1 {
+        font-size: 1.65rem;
+      }
+      .love-message {
+        font-size: 1.12rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hearts-layer" id="heartsLayer" aria-hidden="true"></div>
+
+  <main class="container">
+    <section class="card" id="formCard">
+      <div class="header">
+        <div class="badge">💕 فورم الطلعة الخاص 💕</div>
+        <h1>تصريح خروج ❤️</h1>
+        <p class="subtitle">عبي كل خانة بكل حب وصدق قبل ما تطلع يا قلبي ✨</p>
+      </div>
+
+      <form id="outingForm" novalidate>
+        <div class="field-group">
+          <label for="leaveTime">
+            <span class="step-num">1</span>
+            متى طالع ؟
+          </label>
+          <input
+            type="text"
+            id="leaveTime"
+            placeholder="مثلاً: هلق، الساعة 7 المسا..."
+            required
+          />
+          <div class="error-msg" id="errLeave">اكتبلي متى طالع أولاً 🥺</div>
+        </div>
+
+        <div class="field-group">
+          <label for="outfit">
+            <span class="step-num">2</span>
+            ايش الاوتفيت بالتفصيل ؟
+          </label>
+          <textarea
+            id="outfit"
+            placeholder="احكيلي شو لابس من فوق لتحت، الألوان، الشوز، والعطر..."
+            required
+          ></textarea>
+          <div class="error-msg" id="errOutfit">لا تبخل عليّ بتفاصيل الاوتفيت 👀💗</div>
+        </div>
+
+        <div class="field-group">
+          <label for="destination">
+            <span class="step-num">3</span>
+            وين رايح ؟
+          </label>
+          <input
+            type="text"
+            id="destination"
+            placeholder="الكافيه، المطعم، أو المكان..."
+            required
+          />
+          <div class="error-msg" id="errDest">وين رايح؟ احكيلي المكان 📍</div>
+        </div>
+
+        <div class="field-group">
+          <label for="withWhom">
+            <span class="step-num">4</span>
+            مع مين ؟
+          </label>
+          <input
+            type="text"
+            id="withWhom"
+            placeholder="اكتب اسم الشخص أو مين معك..."
+            required
+          />
+          <div class="reaction-box" id="withWhomReaction"></div>
+          <div class="error-msg" id="errWith">اكتبلي مع مين طالع 🥺</div>
+        </div>
+
+        <div class="field-group">
+          <label for="returnTime">
+            <span class="step-num">5</span>
+            متى راجعة
+          </label>
+          <input
+            type="time"
+            id="returnTime"
+            required
+          />
+          <div class="reaction-box" id="returnReaction"></div>
+          <div class="error-msg" id="errReturn">حدد الساعة اللي رح ترجع فيها ⏰</div>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span>إرسال التصريح</span>
+          <span>💖</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="card result-screen" id="resultCard">
+      <div class="love-banner">
+        <div class="big-heart">❤️</div>
+        <p class="love-message">
+          بحبك كتير انا حبيبي انبسط وانتبه ع حالك حياتيي
+        </p>
+      </div>
+
+      <div class="summary-card">
+        <div class="summary-title">📋 ملخص تصريح الخروج</div>
+        <div class="summary-item">
+          <span class="summary-label">متى طالع ؟</span>
+          <span class="summary-val" id="sumLeave"></span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">ايش الاوتفيت بالتفصيل ؟</span>
+          <span class="summary-val" id="sumOutfit"></span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">وين رايح ؟</span>
+          <span class="summary-val" id="sumDest"></span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">مع مين ؟</span>
+          <span class="summary-val" id="sumWith"></span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">متى راجعة</span>
+          <span class="summary-val" id="sumReturn"></span>
+        </div>
+        <div id="extraNotes"></div>
+      </div>
+
+      <button type="button" class="reset-btn" id="resetBtn">
+        تعبئة تصريح جديد 💕
+      </button>
+    </section>
+  </main>
+
+  <script>
+    const heartsLayer = document.getElementById('heartsLayer');
+    const heartSymbols = ['💗', '💖', '💕', '❤️', '💓', '💘'];
+    for (let i = 0; i < 22; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'floating-heart';
+      heart.textContent = heartSymbols[i % heartSymbols.length];
+      heart.style.left = `${Math.random() * 100}%`;
+      heart.style.fontSize = `${16 + Math.random() * 20}px`;
+      heart.style.animationDuration = `${7 + Math.random() * 8}s`;
+      heart.style.animationDelay = `${Math.random() * 8}s`;
+      heartsLayer.appendChild(heart);
+    }
+
+    const withWhomInput = document.getElementById('withWhom');
+    const withWhomReaction = document.getElementById('withWhomReaction');
+    const returnTimeInput = document.getElementById('returnTime');
+    const returnReaction = document.getElementById('returnReaction');
+
+    function isAbdullah(value) {
+      const normalized = value.trim().replace(/\s+/g, ' ');
+      return normalized === 'عبدالله' || normalized === 'عبد الله';
+    }
+
+    function isAfterElevenThirty(timeStr) {
+      if (!timeStr) return false;
+      const parts = timeStr.split(':');
+      if (parts.length < 2) return false;
+      const hours = parseInt(parts[0], 10);
+      const minutes = parseInt(parts[1], 10);
+      if (Number.isNaN(hours) || Number.isNaN(minutes)) return false;
+      return (hours > 23) || (hours === 23 && minutes > 30) || (hours >= 0 && hours < 5);
+    }
+
+    function formatTime12h(timeStr) {
+      if (!timeStr) return '';
+      const [hStr, mStr] = timeStr.split(':');
+      let h = parseInt(hStr, 10);
+      const m = mStr;
+      const period = h >= 12 ? 'مساءً' : 'صباحاً';
+      h = h % 12;
+      if (h === 0) h = 12;
+      return `${h}:${m} ${period}`;
+    }
+
+    function updateWithWhomReaction() {
+      const val = withWhomInput.value;
+      if (!val.trim()) {
+        withWhomReaction.className = 'reaction-box';
+        withWhomReaction.textContent = '';
+        return;
+      }
+      if (isAbdullah(val)) {
+        withWhomReaction.className = 'reaction-box reaction-abdullah';
+        withWhomReaction.textContent = 'امم حبييت';
+      } else {
+        withWhomReaction.className = 'reaction-box reaction-ok';
+        withWhomReaction.textContent = 'تمام يا قلبي 💕';
+      }
+    }
+
+    function updateReturnReaction() {
+      const val = returnTimeInput.value;
+      if (!val) {
+        returnReaction.className = 'reaction-box';
+        returnReaction.textContent = '';
+        return;
+      }
+      if (isAfterElevenThirty(val)) {
+        returnReaction.className = 'reaction-box reaction-late';
+        returnReaction.textContent = 'لا هيد كتييير ورح ازعل';
+      } else {
+        returnReaction.className = 'reaction-box reaction-ok';
+        returnReaction.textContent = 'وقت ممتاز ومناسب حبيبي 🥺💗';
+      }
+    }
+
+    withWhomInput.addEventListener('input', updateWithWhomReaction);
+    returnTimeInput.addEventListener('input', updateReturnReaction);
+    returnTimeInput.addEventListener('change', updateReturnReaction);
+
+    const form = document.getElementById('outingForm');
+    const formCard = document.getElementById('formCard');
+    const resultCard = document.getElementById('resultCard');
+    const resetBtn = document.getElementById('resetBtn');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const leaveVal = document.getElementById('leaveTime').value.trim();
+      const outfitVal = document.getElementById('outfit').value.trim();
+      const destVal = document.getElementById('destination').value.trim();
+      const withVal = withWhomInput.value.trim();
+      const returnVal = returnTimeInput.value;
+
+      let valid = true;
+
+      const toggleErr = (id, show) => {
+        document.getElementById(id).style.display = show ? 'block' : 'none';
+        if (show) valid = false;
+      };
+
+      toggleErr('errLeave', !leaveVal);
+      toggleErr('errOutfit', !outfitVal);
+      toggleErr('errDest', !destVal);
+      toggleErr('errWith', !withVal);
+      toggleErr('errReturn', !returnVal);
+
+      if (!valid) return;
+
+      document.getElementById('sumLeave').textContent = leaveVal;
+      document.getElementById('sumOutfit').textContent = outfitVal;
+      document.getElementById('sumDest').textContent = destVal;
+      document.getElementById('sumWith').textContent = withVal;
+      document.getElementById('sumReturn').textContent = `${formatTime12h(returnVal)} (${returnVal})`;
+
+      const extraNotes = document.getElementById('extraNotes');
+      extraNotes.innerHTML = '';
+
+      if (isAbdullah(withVal)) {
+        const note1 = document.createElement('div');
+        note1.className = 'extra-note';
+        note1.textContent = 'امم حبييت';
+        extraNotes.appendChild(note1);
+      }
+
+      if (isAfterElevenThirty(returnVal)) {
+        const note2 = document.createElement('div');
+        note2.className = 'extra-note';
+        note2.textContent = 'لا هيد كتييير ورح ازعل';
+        extraNotes.appendChild(note2);
+      }
+
+      formCard.style.display = 'none';
+      resultCard.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    resetBtn.addEventListener('click', function () {
+      form.reset();
+      withWhomReaction.className = 'reaction-box';
+      withWhomReaction.textContent = '';
+      returnReaction.className = 'reaction-box';
+      returnReaction.textContent = '';
+      resultCard.style.display = 'none';
+      formCard.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
